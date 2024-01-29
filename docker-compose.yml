@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - ./migrate/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_DB: etherscan
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD} # Pulls from .env file
+    restart: always
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DSN=postgres://postgres:${DB_PASSWORD}@db:5432/etherscan?sslmode=disable
+      - APIKEY=${APIKEY}
+      - RPCURL=${RPCURL}
+    depends_on:
+      - db
+    restart: always
+    command: ["./app"] # Default command to run the app, flags can be added here or in the actual application code
+
