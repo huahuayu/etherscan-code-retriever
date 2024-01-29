@@ -1,4 +1,4 @@
-module etherscan-code-retriever
+module github.com/huahuayu/etherscan-code-retriever
 
 go 1.21
 
