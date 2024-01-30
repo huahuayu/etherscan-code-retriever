@@ -25,11 +25,13 @@ Since the number of contract is limited, especially the well-known contracts or 
 
 ## Usage
 
-If the app is running, you can use the following http endpoint to query the contract code, e.g. http://localhost:8080/code/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+If the app is running, you can use the following http endpoint to query the contract code:
 
 - `/code/{address}`: Get the contract code by address.
 
-You get the same result as the Etherscan API.
+e.g. http://localhost:8080/code/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+
+You get the same result as from Etherscan API.
 
 ```go
 type SourceCode struct {
